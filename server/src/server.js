@@ -7,13 +7,9 @@ async function connectDB() {
   console.log("Connected to MongoDB");
 }
 
-// Only start the server in development mode
+// Only start the server in development mode (no app.listen() needed for Vercel)
 if (require.main === module) {
-  connectDB().then(() => {
-    app.listen(process.env.PORT || 5000, () => {
-      console.log(`Server running at port: ${process.env.PORT || 5000}`);
-    });
-  });
+  connectDB();
 }
 
 // Export for Vercel (required)
